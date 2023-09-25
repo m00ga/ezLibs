@@ -5,6 +5,8 @@ set(ROOT_VERSION 1.0.0)
 
 project(${ROOT_PROJECT} LANGUAGES CXX VERSION ${ROOT_VERSION})
 
+add_subdirectory(ezLogger)
+
 configure_file(${ROOT_PROJECT}Config.cmake
     "${CMAKE_BINARY_DIR}/${ROOT_PROJECT}Config.cmake"
     @ONLY
