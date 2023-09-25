@@ -1,5 +1,5 @@
 set(COMPONENT_NAME ezLogger)
-set(COMPONENT_SOURCES )
+set(COMPONENT_SOURCES src/dummy.cpp)
 set(COMPONENT_VERSION 1.0.0)
 set(COMPONENT_SOVERSION 1)
 
@@ -19,6 +19,10 @@ target_include_directories(${COMPONENT_NAME} PUBLIC
 
 target_compile_features(${COMPONENT_NAME} PUBLIC cxx_std_17)
 target_link_libraries(${COMPONENT_NAME} PUBLIC fmt::fmt)
+
+if(DEFINED EZLOGGER_BUILD_TESTS)
+    add_subdirectory(tests)
+endif()
 
 install(TARGETS ${COMPONENT_NAME} EXPORT ${COMPONENT_NAME}-targets
     COMPONENT ${COMPONENT_NAME}
