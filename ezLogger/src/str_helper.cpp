@@ -11,6 +11,8 @@ std::string str_helper_<std::string>::get_str(const std::string &dest) {
   return dest;
 }
 
+void str_helper_<std::string>::append_eol(std::string &dest) { dest += "\n"; }
+
 void str_helper_<std::ostringstream>::append_str(std::string_view str,
                                                  std::ostringstream &dest) {
   dest << str;
@@ -21,12 +23,20 @@ str_helper_<std::ostringstream>::get_str(const std::ostringstream &dest) {
   return dest.str();
 }
 
+void str_helper_<std::ostringstream>::append_eol(std::ostringstream &dest) {
+  dest << std::endl;
+}
+
 void str_helper::append_str(std::string_view str, dest_t &dest) {
   str_helper_<dest_t>::append_str(str, dest);
 }
 
 std::string str_helper::get_str(const dest_t &dest) {
   return str_helper_<dest_t>::get_str(dest);
+}
+
+void str_helper::append_eol(dest_t &dest) {
+  str_helper_<dest_t>::append_eol(dest);
 }
 }; // namespace details
 }; // namespace ezLogger

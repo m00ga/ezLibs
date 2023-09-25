@@ -19,3 +19,7 @@
 
 #define TEST_ASSERTL(label, assert)                                            \
   TEST_CASE_(label, #assert, [&]() { return assert; })
+
+#define TEST_FUNC(func) TEST_CASE_(TEST_LABEL, #func, func)
+
+#define TEST_FUNCL(label, func) TEST_CASE_(label, #func, func)
