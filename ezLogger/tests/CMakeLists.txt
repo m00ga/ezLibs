@@ -1,9 +1,14 @@
 enable_testing()
 
-add_executable(message_test log_message.cpp)
-target_link_libraries(message_test PRIVATE ezLogger)
+function(create_test test_name)
+    add_executable(${test_name} ${test_name}.cpp)
+    target_link_libraries(${test_name} PRIVATE ezLogger)
 
-add_test(
-    NAME log_message_test
-    COMMAND $<TARGET_FILE:message_test>
-)
+    add_test(
+        NAME ${test_name}_test
+        COMMAND $<TARGET_FILE:${test_name}>
+    )
+endfunction()
+
+create_test(log_message)
+create_test(str_helper)

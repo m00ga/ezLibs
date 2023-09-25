@@ -1,5 +1,5 @@
 set(COMPONENT_NAME ezLogger)
-set(COMPONENT_SOURCES src/dummy.cpp)
+set(COMPONENT_SOURCES src/dummy.cpp src/str_helper.cpp)
 set(COMPONENT_VERSION 1.0.0)
 set(COMPONENT_SOVERSION 1)
 
