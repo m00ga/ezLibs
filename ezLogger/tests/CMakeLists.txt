@@ -12,3 +12,4 @@ endfunction()
 
 create_test(log_message)
 create_test(str_helper)
+create_test(format_flags)

@@ -4,6 +4,7 @@
 #include <sstream>
 #include <string>
 #include <string_view>
+#include <type_traits>
 
 namespace ezLogger {
 namespace details {
@@ -27,6 +28,11 @@ public:
 struct str_helper {
 public:
   static void append_str(std::string_view str, dest_t &dest);
+  template <typename T,
+            typename std::enable_if_t<std::is_integral_v<T>, bool> = true>
+  inline static void append_str(T value, dest_t &dest) {
+    str_helper_<dest_t>::append_str(std::to_string(value), dest);
+  }
   static std::string get_str(const dest_t &dest);
 };
 }; // namespace details

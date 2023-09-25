@@ -4,6 +4,8 @@
 #include <string>
 #include <string_view>
 
+#include <climits>
+
 static const std::string_view tst("test");
 
 int main() {
@@ -19,6 +21,10 @@ int main() {
     return 1;
   ezLogger::details::str_helper::append_str(tst, dest);
   if (ezLogger::details::str_helper::get_str(dest) != tst)
+    return 1;
+  dest.clear();
+  ezLogger::details::str_helper::append_str(INT_MAX, dest);
+  if (ezLogger::details::str_helper::get_str(dest) != std::to_string(INT_MAX))
     return 1;
   return 0;
 }
