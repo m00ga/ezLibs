@@ -1,4 +1,5 @@
 #include "./details/common.hpp"
+#include "./details/logger_factory.hpp"
 #include "./sinks/stdstr_sink.hpp"
 #include "./test_helper.hpp"
 #include "details/log_message.hpp"
@@ -16,12 +17,13 @@ int main() {
   TEST_ASSERT(tmp > 0);
 
   FILE *file = fdopen(tmp, "w+");
-  ezLogger::sinks::stdout_base_sink<ezLogger::details::null_mutex> snk(file);
-  snk.set_pattern("%n %v %l");
+  auto snk = ezLogger::details::sink_factory::create<
+      ezLogger::sinks::stdout_base_sink<ezLogger::details::null_mutex>>(file);
+  snk->set_pattern("%n %v %l");
 
   ezLogger::details::log_message msg("test", "test_str",
                                      ezLogger::details::log_level::INFO);
-  snk.log(msg);
+  snk->log(msg);
   fseek(file, 0, SEEK_SET);
 
   char buf[256];

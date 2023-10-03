@@ -2,8 +2,13 @@
 
 #include <fmt/core.h>
 
+#include <memory>
+#include <string>
+
 #include "./base_sink.hpp"
 #include "./details/log_message.hpp"
+#include "./details/logger.hpp"
+#include "./details/logger_factory.hpp"
 
 namespace ezLogger {
 namespace sinks {
@@ -40,5 +45,25 @@ using stdout_sink_st = stdout_sink<details::null_mutex>;
 
 using stderr_sink_mt = stderr_sink<std::mutex>;
 using stderr_sink_st = stderr_sink<details::null_mutex>;
+
+inline std::shared_ptr<details::logger>
+stdout_logger_mt(const std::string &logger_name) {
+  return details::logger_factory::create<stdout_sink_mt>(logger_name);
+}
+
+inline std::shared_ptr<details::logger>
+stdout_logger_st(const std::string &logger_name) {
+  return details::logger_factory::create<stdout_sink_st>(logger_name);
+}
+
+inline std::shared_ptr<details::logger>
+stderr_logger_mt(const std::string &logger_name) {
+  return details::logger_factory::create<stderr_sink_mt>(logger_name);
+}
+
+inline std::shared_ptr<details::logger>
+stderr_logger_st(const std::string &logger_name) {
+  return details::logger_factory::create<stderr_sink_st>(logger_name);
+}
 }; // namespace sinks
 }; // namespace ezLogger
