@@ -1,0 +1,39 @@
+#pragma once
+
+#include "./details/logger.hpp"
+#include "details/formatter.hpp"
+#include "details/log_level.hpp"
+#include <memory>
+#include <string>
+#include <unordered_map>
+
+namespace ezLogger {
+class registry {
+private:
+  std::unordered_map<std::string, std::shared_ptr<details::logger>> _loggers;
+  std::shared_ptr<details::logger> _default_logger;
+  std::unique_ptr<details::formatter> _formatter;
+  details::log_level _default_level{details::log_level::TRACE};
+  std::mutex _registry_mutex;
+  std::string _pattern;
+
+  void register_logger_(const std::shared_ptr<details::logger> &new_logger);
+
+  registry();
+  ~registry() = default;
+
+public:
+  inline static registry &instance() {
+    static registry _inst;
+    return _inst;
+  }
+
+  void set_formatter(std::unique_ptr<details::formatter> &&formatter);
+  void set_pattern(const std::string &pattern);
+  void register_logger(const std::shared_ptr<details::logger> &new_logger);
+  void set_default_logger(const std::shared_ptr<details::logger> &logger);
+  std::shared_ptr<details::logger> default_logger();
+  void initalize_logger(const std::shared_ptr<details::logger> &new_logger);
+  std::shared_ptr<details::logger> get(const std::string &name);
+};
+}; // namespace ezLogger

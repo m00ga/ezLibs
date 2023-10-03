@@ -1,5 +1,6 @@
 #pragma once
 
+#include "./registry.hpp"
 #include "details/logger.hpp"
 #include "details/sink.hpp"
 #include <memory>
@@ -25,7 +26,8 @@ public:
                                                Args &&...args) {
     auto sink = sink_factory::create<Sink>(std::forward<Args>(args)...);
     auto log = std::make_shared<logger>(name, std::move(sink));
-    return std::move(log);
+    registry::instance().initalize_logger(log);
+    return log;
   }
 };
 }; // namespace details

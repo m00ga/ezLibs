@@ -1,6 +1,6 @@
 set(COMPONENT_NAME ezLogger)
 set(COMPONENT_SOURCES src/str_helper.cpp src/format_flags.cpp
-                      src/default_formatter.cpp src/logger.cpp)
+                      src/default_formatter.cpp src/logger.cpp src/registry.cpp)
 set(COMPONENT_VERSION 1.0.0)
 set(COMPONENT_SOVERSION 1)
 
