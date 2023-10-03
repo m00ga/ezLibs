@@ -27,8 +27,7 @@ int main() {
   char buf[256];
   fread(buf, sizeof(char), sizeof(test_data), file);
   buf[sizeof(test_data) - 1] = '\0';
+  fclose(file);
 
   TEST_ASSERT(strcmp(test_data, buf) == 0);
-
-  fclose(file);
 }
