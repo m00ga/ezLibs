@@ -25,5 +25,10 @@ void logger::set_pattern(const std::string &pattern) {
   auto new_formatter = std::make_unique<default_formatter>(pattern);
   set_formatter(std::move(new_formatter));
 }
+
+void logger::add_sink(sink_ptr &&sink) {
+  std::lock_guard<std::mutex> lock(_mutex);
+  _sinks.push_back(std::move(sink));
+}
 }; // namespace details
 }; // namespace ezLogger

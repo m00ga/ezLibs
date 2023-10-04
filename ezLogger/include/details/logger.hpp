@@ -5,6 +5,7 @@
 #include <memory>
 #include <mutex>
 #include <string>
+#include <type_traits>
 #include <utility>
 #include <vector>
 
@@ -22,10 +23,11 @@ public:
 
   explicit logger(const std::string &name);
   logger(const std::string &name, sink_ptr &&sink);
-  template <typename std::size_t N>
-  logger(const std::string &name, sink_ptr (&&sinks)[N])
-      : _name(name), _sinks(std::make_move_iterator(std::begin(sinks)),
-                            std::make_move_iterator(std::end(sinks))) {}
+  template <typename... Sinks>
+  logger(const std::string &name, Sinks &&...sinks) : _name(name) {
+    _sinks.reserve(sizeof...(sinks));
+    (_sinks.push_back(std::forward<Sinks>(sinks)), ...);
+  }
 
   template <typename T, typename... Args>
   void add_to_context(const std::string &key, Args &&...args) {
@@ -37,6 +39,7 @@ public:
 
   std::shared_ptr<details::log_context> get_ctx() { return _ctx; }
   std::string name() { return _name; }
+  void set_name(const std::string &name) { _name = name; }
 
   template <typename... Args>
   void log(details::log_level level, std::string_view message, Args &&...args) {
@@ -75,6 +78,8 @@ public:
   void set_formatter(std::unique_ptr<details::formatter> formatter);
 
   void set_pattern(const std::string &pattern);
+
+  void add_sink(sink_ptr &&sink);
 
 private:
   std::string _name;

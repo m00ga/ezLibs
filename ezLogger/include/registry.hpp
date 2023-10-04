@@ -28,6 +28,10 @@ public:
     return _inst;
   }
 
+  details::log_level get_level() { return _default_level; }
+  void set_level(details::log_level lvl) { _default_level = lvl; }
+  void set_name(const std::string &name) { _default_logger->set_name(name); }
+
   void set_formatter(std::unique_ptr<details::formatter> &&formatter);
   void set_pattern(const std::string &pattern);
   void register_logger(const std::shared_ptr<details::logger> &new_logger);

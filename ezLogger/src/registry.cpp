@@ -1,12 +1,15 @@
 #include "./registry.hpp"
 #include "./default_formatter.hpp"
 #include "./details/logger.hpp"
+#include "sinks/stdstr_sink.hpp"
 #include <memory>
 #include <stdexcept>
 namespace ezLogger {
 registry::registry() {
   _formatter = std::make_unique<default_formatter>();
-  _default_logger = std::make_shared<details::logger>("log");
+  auto snk = details::sink_factory::create<sinks::stdout_sink_st>();
+  _default_logger =
+      std::move(std::make_shared<details::logger>("log", std::move(snk)));
 }
 
 void registry::register_logger_(
