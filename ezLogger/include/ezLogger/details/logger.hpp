@@ -11,9 +11,9 @@
 
 #include <fmt/core.h>
 
-#include "./details/formatter.hpp"
-#include "./details/log_context.hpp"
-#include "./details/sink.hpp"
+#include <ezLogger/details/formatter.hpp>
+#include <ezLogger/details/log_context.hpp>
+#include <ezLogger/details/sink.hpp>
 
 namespace ezLogger {
 namespace details {

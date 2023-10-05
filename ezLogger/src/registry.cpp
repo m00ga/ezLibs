@@ -1,7 +1,7 @@
-#include "./registry.hpp"
-#include "./default_formatter.hpp"
-#include "./details/logger.hpp"
-#include "sinks/stdstr_sink.hpp"
+#include <ezLogger/default_formatter.hpp>
+#include <ezLogger/details/logger.hpp>
+#include <ezLogger/registry.hpp>
+#include <ezLogger/sinks/stdstr_sink.hpp>
 #include <memory>
 #include <stdexcept>
 namespace ezLogger {

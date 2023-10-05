@@ -18,13 +18,13 @@ set_target_properties(
 target_include_directories(
   ${COMPONENT_NAME}
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-         $<INSTALL_INTERFACE:include/${ROOT_PROJECT}/${COMPONENT_NAME}>)
+         $<INSTALL_INTERFACE:include/${ROOT_PROJECT}>)
 
 target_compile_features(${COMPONENT_NAME} PUBLIC cxx_std_17)
 target_link_libraries(${COMPONENT_NAME} PUBLIC fmt::fmt)
 
 if(DEFINED EZLOGGER_BUILD_TESTS)
-    add_subdirectory(tests)
+  add_subdirectory(tests)
 endif()
 
 install(
@@ -32,10 +32,7 @@ install(
   EXPORT ${COMPONENT_NAME}-targets
   COMPONENT ${COMPONENT_NAME}
   ARCHIVE DESTINATION lib/${ROOT_PROJECT}
-  LIBRARY DESTINATION lib/${ROOT_PROJECT}
-  INCLUDES
-  DESTINATION include/${ROOT_PROJECT}/${COMPONENT_NAME})
-
+  LIBRARY DESTINATION lib/${ROOT_PROJECT})
 install(
   EXPORT ${COMPONENT_NAME}-targets
   FILE "${ROOT_PROJECT}-${COMPONENT_NAME}-targets.cmake"
@@ -52,5 +49,5 @@ install(
   DESTINATION lib/cmake/${ROOT_PROJECT}
   COMPONENT ${COMPONENT_NAME})
 
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/${COMPONENT_NAME}/
         DESTINATION include/${ROOT_PROJECT}/${COMPONENT_NAME})

@@ -1,9 +1,11 @@
-#include "./registry.hpp"
-#include "./details/logger_factory.hpp"
-#include "./sinks/stdstr_sink.hpp"
-#include "details/common.hpp"
-#include "test_helper.hpp"
+#include "./test_helper.hpp"
+
 #include <unistd.h>
+
+#include <ezLogger/details/common.hpp>
+#include <ezLogger/details/logger_factory.hpp>
+#include <ezLogger/registry.hpp>
+#include <ezLogger/sinks/stdstr_sink.hpp>
 
 const char test_data[] = "test test_str";
 const char test1_data[] = "test1 test_str";

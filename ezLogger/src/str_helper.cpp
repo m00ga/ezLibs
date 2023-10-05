@@ -1,4 +1,4 @@
-#include "./details/str_hepler.hpp"
+#include <ezLogger/details/str_hepler.hpp>
 
 namespace ezLogger {
 namespace details {

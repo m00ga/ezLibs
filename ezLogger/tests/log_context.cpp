@@ -1,6 +1,8 @@
-#include "./details/log_context.hpp"
 #include "./test_helper.hpp"
+
 #include <cstring>
+
+#include <ezLogger/details/log_context.hpp>
 
 struct test {
   int a;

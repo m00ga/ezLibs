@@ -5,10 +5,10 @@
 #include <memory>
 #include <string>
 
-#include "./base_sink.hpp"
-#include "./details/log_message.hpp"
-#include "./details/logger.hpp"
-#include "./details/logger_factory.hpp"
+#include <ezLogger/sinks/base_sink.hpp>
+#include <ezLogger/details/log_message.hpp>
+#include <ezLogger/details/logger.hpp>
+#include <ezLogger/details/logger_factory.hpp>
 
 namespace ezLogger {
 namespace sinks {

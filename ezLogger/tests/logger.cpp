@@ -1,11 +1,12 @@
-#include "./details/logger.hpp"
-#include "details/common.hpp"
-#include "details/log_level.hpp"
-#include "sinks/stdstr_sink.hpp"
-#include "test_helper.hpp"
-#include <unistd.h>
+#include "./test_helper.hpp"
 
 #include <fmt/core.h>
+#include <unistd.h>
+
+#include <ezLogger/details/common.hpp>
+#include <ezLogger/details/log_level.hpp>
+#include <ezLogger/details/logger.hpp>
+#include <ezLogger/sinks/stdstr_sink.hpp>
 
 static const char test_data[] = "test_str";
 static char test_file[] = "/tmp/stdstr_test";

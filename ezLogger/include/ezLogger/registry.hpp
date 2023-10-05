@@ -1,8 +1,8 @@
 #pragma once
 
-#include "./details/logger.hpp"
-#include "details/formatter.hpp"
-#include "details/log_level.hpp"
+#include <ezLogger/details/logger.hpp>
+#include <ezLogger/details/formatter.hpp>
+#include <ezLogger/details/log_level.hpp>
 #include <memory>
 #include <string>
 #include <unordered_map>

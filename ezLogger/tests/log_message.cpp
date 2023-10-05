@@ -1,6 +1,8 @@
-#include "details/log_message.hpp"
 #include "./test_helper.hpp"
+
 #include <string>
+
+#include <ezLogger/details/log_message.hpp>
 
 const std::string test_name("test");
 const std::string test_data("test_data");

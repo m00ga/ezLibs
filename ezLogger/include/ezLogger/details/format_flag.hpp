@@ -1,7 +1,7 @@
 #pragma once
 
-#include "./common.hpp"
-#include "./log_message.hpp"
+#include <ezLogger/details/common.hpp>
+#include <ezLogger/details/log_message.hpp>
 
 #include <memory>
 

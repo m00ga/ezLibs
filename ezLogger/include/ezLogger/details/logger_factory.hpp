@@ -1,8 +1,8 @@
 #pragma once
 
-#include "./registry.hpp"
-#include "details/logger.hpp"
-#include "details/sink.hpp"
+#include <ezLogger/details/logger.hpp>
+#include <ezLogger/details/sink.hpp>
+#include <ezLogger/registry.hpp>
 #include <memory>
 #include <string>
 #include <type_traits>

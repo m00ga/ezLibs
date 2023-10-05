@@ -1,11 +1,11 @@
-#include "./details/str_hepler.hpp"
 #include "./test_helper.hpp"
 
+#include <climits>
 #include <sstream>
 #include <string>
 #include <string_view>
 
-#include <climits>
+#include <ezLogger/details/str_hepler.hpp>
 
 static const std::string_view tst("test");
 

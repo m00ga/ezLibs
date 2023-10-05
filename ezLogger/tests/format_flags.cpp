@@ -1,12 +1,12 @@
-#include "./format_flags.hpp"
 #include "./test_helper.hpp"
-#include "details/str_hepler.hpp"
-
-#include <memory>
-#include <string>
 
 #include <fmt/compile.h>
 #include <fmt/core.h>
+#include <memory>
+#include <string>
+
+#include <ezLogger/details/str_hepler.hpp>
+#include <ezLogger/format_flags.hpp>
 
 #define TEST_FLAG(flag, msg, assert)                                           \
   {                                                                            \

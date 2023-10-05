@@ -1,6 +1,6 @@
 #pragma once
 
-#include "./details/common.hpp"
+#include <ezLogger/details/common.hpp>
 #include <sstream>
 #include <string>
 #include <string_view>

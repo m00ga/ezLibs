@@ -1,6 +1,6 @@
-#include "./default_formatter.hpp"
-#include "./format_flags.hpp"
-#include "details/str_hepler.hpp"
+#include <ezLogger/default_formatter.hpp>
+#include <ezLogger/details/str_hepler.hpp>
+#include <ezLogger/format_flags.hpp>
 
 #define HANDLE_FLAG(ch, name, dest)                                            \
   case ch: {                                                                   \

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "./details/format_flag.hpp"
+#include <ezLogger/details/format_flag.hpp>
 #include <string>
 
 namespace ezLogger {

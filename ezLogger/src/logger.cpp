@@ -1,5 +1,5 @@
-#include "./details/logger.hpp"
-#include "default_formatter.hpp"
+#include <ezLogger/details/logger.hpp>
+#include <ezLogger/default_formatter.hpp>
 #include <mutex>
 
 namespace ezLogger {

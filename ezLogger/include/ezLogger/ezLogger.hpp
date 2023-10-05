@@ -1,9 +1,9 @@
 #pragma once
 
-#include "./registry.hpp"
-#include "details/formatter.hpp"
-#include "details/log_level.hpp"
-#include "details/logger.hpp"
+#include <ezLogger/registry.hpp>
+#include <ezLogger/details/formatter.hpp>
+#include <ezLogger/details/log_level.hpp>
+#include <ezLogger/details/logger.hpp>
 
 #include <memory>
 #include <string>

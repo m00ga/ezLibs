@@ -1,10 +1,10 @@
 #pragma once
 
-#include "./default_formatter.hpp"
-#include "./details/formatter.hpp"
-#include "./details/log_level.hpp"
-#include "./details/sink.hpp"
-#include "details/log_message.hpp"
+#include <ezLogger/default_formatter.hpp>
+#include <ezLogger/details/formatter.hpp>
+#include <ezLogger/details/log_level.hpp>
+#include <ezLogger/details/log_message.hpp>
+#include <ezLogger/details/sink.hpp>
 
 #include <memory>
 #include <mutex>

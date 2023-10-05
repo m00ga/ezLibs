@@ -1,7 +1,7 @@
 #pragma once
 
-#include "details/formatter.hpp"
-#include "details/log_message.hpp"
+#include <ezLogger/details/formatter.hpp>
+#include <ezLogger/details/log_message.hpp>
 
 #include <memory>
 #include <string>

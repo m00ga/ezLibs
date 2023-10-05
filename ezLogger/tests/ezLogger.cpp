@@ -1,10 +1,10 @@
-#include "./ezLogger.hpp"
-#include "./details/logger.hpp"
-#include "details/logger_factory.hpp"
-#include "sinks/file_sink.hpp"
-#include "sinks/stdstr_sink.hpp"
-
 #include <memory>
+
+#include <ezLogger/details/logger.hpp>
+#include <ezLogger/details/logger_factory.hpp>
+#include <ezLogger/ezLogger.hpp>
+#include <ezLogger/sinks/file_sink.hpp>
+#include <ezLogger/sinks/stdstr_sink.hpp>
 
 void init_logger(const std::string &name) {
   auto stout = ezLogger::details::sink_factory::create<
@@ -22,10 +22,10 @@ void init_logger(const std::string &name) {
 }
 
 int main() {
-  init_logger("zheka");
+  init_logger("tester");
 
-  ezLogger::get("zheka")->info("info message");
-  ezLogger::get("zheka")->error("we have problems");
+  ezLogger::get("tester")->info("info message");
+  ezLogger::get("tester")->error("we have problems");
 
   return 0;
 }

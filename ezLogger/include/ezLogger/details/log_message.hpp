@@ -1,7 +1,7 @@
 #pragma once
 
-#include "./log_context.hpp"
-#include "./log_level.hpp"
+#include <ezLogger/details/log_context.hpp>
+#include <ezLogger/details/log_level.hpp>
 #include <ctime>
 #include <memory>
 #include <string_view>

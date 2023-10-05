@@ -5,10 +5,10 @@
 #include <memory>
 #include <string>
 
-#include "./details/logger_factory.hpp"
-#include "details/common.hpp"
-#include "details/logger.hpp"
-#include "sinks/base_sink.hpp"
+#include <ezLogger/details/common.hpp>
+#include <ezLogger/details/logger.hpp>
+#include <ezLogger/details/logger_factory.hpp>
+#include <ezLogger/sinks/base_sink.hpp>
 namespace ezLogger {
 namespace sinks {
 template <typename Mutex> class file_sink : public base_sink<Mutex> {

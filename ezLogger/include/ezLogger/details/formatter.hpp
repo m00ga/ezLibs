@@ -3,8 +3,8 @@
 #include <memory>
 #include <string>
 
-#include "./common.hpp"
-#include "./log_message.hpp"
+#include <ezLogger/details/common.hpp>
+#include <ezLogger/details/log_message.hpp>
 
 namespace ezLogger {
 namespace details {

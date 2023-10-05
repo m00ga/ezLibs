@@ -1,6 +1,6 @@
 #pragma once
 
-#include "details/common.hpp"
+#include <ezLogger/details/common.hpp>
 #include <memory>
 #include <mutex>
 #include <string>

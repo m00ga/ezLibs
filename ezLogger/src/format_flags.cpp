@@ -1,5 +1,5 @@
-#include "./format_flags.hpp"
-#include "./details/str_hepler.hpp"
+#include <ezLogger/details/str_hepler.hpp>
+#include <ezLogger/format_flags.hpp>
 
 #include <fmt/compile.h>
 #include <fmt/core.h>

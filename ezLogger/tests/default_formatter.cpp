@@ -1,7 +1,8 @@
-#include "./default_formatter.hpp"
 #include "./test_helper.hpp"
-#include "details/common.hpp"
-#include "details/str_hepler.hpp"
+
+#include <ezLogger/default_formatter.hpp>
+#include <ezLogger/details/common.hpp>
+#include <ezLogger/details/str_hepler.hpp>
 
 bool create_default_pattern() {
   ezLogger::default_formatter fmt;
