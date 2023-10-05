@@ -8,6 +8,7 @@ project(
   LANGUAGES CXX
   VERSION ${ROOT_VERSION})
 
+add_subdirectory(ezTest)
 add_subdirectory(ezLogger)
 
 configure_file(${ROOT_PROJECT}Config.cmake
