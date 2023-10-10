@@ -1,0 +1,36 @@
+set(COMPONENT_NAME ezNetwork)
+
+add_library(${COMPONENT_NAME} INTERFACE)
+add_library(${ROOT_PROJECT}::${COMPONENT_NAME} ALIAS ${COMPONENT_NAME})
+
+target_include_directories(
+  ${COMPONENT_NAME}
+  INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+            $<INSTALL_INTERFACE:include/${ROOT_PROJECT}>)
+
+target_compile_features(${COMPONENT_NAME} INTERFACE cxx_std_17)
+
+add_subdirectory(ezSocket)
+
+install(
+  TARGETS ${COMPONENT_NAME}
+  EXPORT ${COMPONENT_NAME}-targets
+  COMPONENT ${COMPONENT_NAME}
+  ARCHIVE DESTINATION lib/${ROOT_PROJECT}
+  LIBRARY DESTINATION lib/${ROOT_PROJECT})
+
+install(
+  EXPORT ${COMPONENT_NAME}-targets
+  FILE "${ROOT_PROJECT}-${COMPONENT_NAME}-targets.cmake"
+  NAMESPACE ${ROOT_PROJECT}::
+  DESTINATION lib/cmake/${ROOT_PROJECT}
+  COMPONENT ${COMPONENT_NAME})
+
+configure_file(
+  "${COMPONENT_NAME}-config.cmake.in"
+  "${CMAKE_BINARY_DIR}/${ROOT_PROJECT}-${COMPONENT_NAME}-config.cmake" @ONLY)
+
+install(
+  FILES "${CMAKE_BINARY_DIR}/${ROOT_PROJECT}-${COMPONENT_NAME}-config.cmake"
+  DESTINATION lib/cmake/${ROOT_PROJECT}
+  COMPONENT ${COMPONENT_NAME})
