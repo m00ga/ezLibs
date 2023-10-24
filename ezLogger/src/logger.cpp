@@ -1,5 +1,5 @@
-#include <ezLogger/details/logger.hpp>
 #include <ezLogger/default_formatter.hpp>
+#include <ezLogger/details/logger.hpp>
 #include <mutex>
 
 namespace ezLogger {
@@ -29,6 +29,16 @@ void logger::set_pattern(const std::string &pattern) {
 void logger::add_sink(sink_ptr &&sink) {
   std::lock_guard<std::mutex> lock(_mutex);
   _sinks.push_back(std::move(sink));
+}
+
+std::vector<logger::sink_ptr> logger::get_sinks() {
+  std::vector<sink_ptr> cloned;
+
+  for (auto &snk : _sinks) {
+    cloned.push_back(std::move(snk->clone()));
+  }
+
+  return std::move(cloned);
 }
 }; // namespace details
 }; // namespace ezLogger

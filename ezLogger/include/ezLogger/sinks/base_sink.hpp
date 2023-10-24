@@ -21,13 +21,17 @@ protected:
 
   virtual void sink_push(const details::log_message &msg) = 0;
 
+  std::unique_ptr<details::sink> clone() override { return snk_clone(); }
+
+  virtual std::unique_ptr<base_sink<Mutex>> snk_clone() = 0;
+
 public:
   base_sink() : _formatter(std::make_unique<default_formatter>()) {}
   virtual ~base_sink() = default;
 
   details::log_level get_level() const { return _level; }
 
-  void should_log(details::log_level level) { _level = level; }
+  void should_log(details::log_level level) override { _level = level; }
 
   void set_pattern(const std::string &pattern) override {
     std::lock_guard<Mutex> lock(_mutex);

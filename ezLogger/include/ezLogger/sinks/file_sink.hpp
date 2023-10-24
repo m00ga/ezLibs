@@ -20,6 +20,9 @@ private:
     base_sink<Mutex>::_formatter->format(msg, dest);
     fmt::print(_file, dest);
   }
+  std::unique_ptr<base_sink<Mutex>> snk_clone() override {
+    return std::make_unique<file_sink<Mutex>>(_file);
+  }
 
 public:
   explicit file_sink(const std::filesystem::path &path) {
@@ -27,6 +30,13 @@ public:
     if (_file == nullptr) {
       throw std::runtime_error("file_sink creation error");
     }
+  }
+
+  explicit file_sink(FILE *file) {
+    if (_file == nullptr) {
+      throw std::runtime_error("file_sink creation error");
+    }
+    _file = file;
   }
 
   file_sink(const file_sink<Mutex> &bs) = delete;

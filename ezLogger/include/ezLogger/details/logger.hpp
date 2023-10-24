@@ -28,6 +28,9 @@ public:
     _sinks.reserve(sizeof...(sinks));
     (_sinks.push_back(std::forward<Sinks>(sinks)), ...);
   }
+  logger(const std::string &name, std::vector<sink_ptr> &&sinks) : _name(name) {
+    _sinks = std::move(sinks);
+  }
 
   template <typename T, typename... Args>
   void add_to_context(const std::string &key, Args &&...args) {
@@ -80,6 +83,8 @@ public:
   void set_pattern(const std::string &pattern);
 
   void add_sink(sink_ptr &&sink);
+
+  std::vector<sink_ptr> get_sinks();
 
 private:
   std::string _name;
