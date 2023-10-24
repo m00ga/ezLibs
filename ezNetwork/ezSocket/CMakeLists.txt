@@ -1,5 +1,5 @@
 set(SUBLIB_NAME ezSocket)
-set(SUBLIB_SOURCES )
+set(SUBLIB_SOURCES src/adress_data.cpp)
 
 set(SUBLIB_VERSION 1.0.0)
 set(SUBLIB_SOVERSION 1)
