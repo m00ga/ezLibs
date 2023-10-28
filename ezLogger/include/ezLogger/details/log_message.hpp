@@ -1,10 +1,11 @@
 #pragma once
 
+#include <ctime>
 #include <ezLogger/details/log_context.hpp>
 #include <ezLogger/details/log_level.hpp>
-#include <ctime>
 #include <memory>
 #include <string_view>
+#include <string>
 
 namespace ezLogger {
 namespace details {
@@ -14,6 +15,7 @@ struct log_message {
   std::unique_ptr<std::tm> cachedTime;
   log_level level;
   std::shared_ptr<log_context> ctx;
+  std::string user_ctx_key;
 
   log_message() = delete;
   log_message(std::string_view name, std::string_view message,

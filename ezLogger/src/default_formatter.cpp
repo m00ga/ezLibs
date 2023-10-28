@@ -78,6 +78,11 @@ void default_formatter::set_custom_flags(custom_flags_map &&flags) {
   _customFlags.clear();
   _customFlags = std::move(flags);
 }
+
+void default_formatter::add_custom_flag(
+    char flag, std::unique_ptr<details::custom_flag> &&custom_flag) {
+  _customFlags.insert({flag, std::move(custom_flag)});
+}
 void default_formatter::set_pattern(const std::string &pattern) {
   _pattern = pattern;
   compile_pattern(_pattern);

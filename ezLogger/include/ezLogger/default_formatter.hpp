@@ -24,6 +24,8 @@ public:
   default_formatter &operator=(default_formatter &&fmt) = delete;
 
   void set_custom_flags(custom_flags_map &&flags);
+  void add_custom_flag(char flag,
+                       std::unique_ptr<details::custom_flag> &&custom_flag);
 
   void format(const details::log_message &msg, details::dest_t &dest) override;
   void set_pattern(const std::string &pattern) override;

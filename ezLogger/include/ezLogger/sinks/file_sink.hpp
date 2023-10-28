@@ -33,7 +33,7 @@ public:
   }
 
   explicit file_sink(FILE *file) {
-    if (_file == nullptr) {
+    if (file == nullptr) {
       throw std::runtime_error("file_sink creation error");
     }
     _file = file;

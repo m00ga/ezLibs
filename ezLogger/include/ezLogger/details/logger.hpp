@@ -24,7 +24,7 @@ public:
   explicit logger(const std::string &name);
   logger(const std::string &name, sink_ptr &&sink);
   template <typename... Sinks>
-  logger(const std::string &name, Sinks &&...sinks) : _name(name) {
+  explicit logger(const std::string &name, Sinks &&...sinks) : _name(name) {
     _sinks.reserve(sizeof...(sinks));
     (_sinks.push_back(std::forward<Sinks>(sinks)), ...);
   }
@@ -45,9 +45,20 @@ public:
   void set_name(const std::string &name) { _name = name; }
 
   template <typename... Args>
-  void log(details::log_level level, std::string_view message, Args &&...args) {
+  void log(details::log_level level, std::string_view message, Args &&...args,
+           const std::string &ctx_key = "") {
     std::string fmt_string = fmt::format(message, std::forward<Args>(args)...);
     details::log_message msg(_name, fmt_string, level, _ctx);
+    msg.user_ctx_key = ctx_key;
+    for (auto &sink : _sinks) {
+      sink->log(msg);
+    }
+  }
+
+  void log(details::log_level level, std::string_view message,
+           const std::string &ctx_key = "") {
+    details::log_message msg(_name, message, level, _ctx);
+    msg.user_ctx_key = ctx_key;
     for (auto &sink : _sinks) {
       sink->log(msg);
     }
@@ -55,27 +66,32 @@ public:
 
   template <typename... Args>
   void info(std::string_view message, Args &&...args) {
-    log(details::log_level::INFO, message, std::forward<Args>(args)...);
+    log<Args...>(details::log_level::INFO, message,
+                 std::forward<Args>(args)...);
   }
 
   template <typename... Args>
   void error(std::string_view message, Args &&...args) {
-    log(details::log_level::ERROR, message, std::forward<Args>(args)...);
+    log<Args...>(details::log_level::ERROR, message,
+                 std::forward<Args>(args)...);
   }
 
   template <typename... Args>
   void trace(std::string_view message, Args &&...args) {
-    log(details::log_level::TRACE, message, std::forward<Args>(args)...);
+    log<Args...>(details::log_level::TRACE, message,
+                 std::forward<Args>(args)...);
   }
 
   template <typename... Args>
   void debug(std::string_view message, Args &&...args) {
-    log(details::log_level::DEBUG, message, std::forward<Args>(args)...);
+    log<Args...>(details::log_level::DEBUG, message,
+                 std::forward<Args>(args)...);
   }
 
   template <typename... Args>
   void warn(std::string_view message, Args &&...args) {
-    log(details::log_level::WARN, message, std::forward<Args>(args)...);
+    log<Args...>(details::log_level::WARN, message,
+                 std::forward<Args>(args)...);
   }
 
   void set_formatter(std::unique_ptr<details::formatter> formatter);

@@ -48,23 +48,23 @@ void trace(std::string_view message, Args &&...args) {
   log(details::log_level::TRACE, message, std::forward<Args>(args)...);
 }
 
-std::shared_ptr<details::logger> get(const std::string &name) {
+inline std::shared_ptr<details::logger> get(const std::string &name) {
   return registry::instance().get(name);
 }
 
-void set_default(const std::shared_ptr<details::logger> &logger) {
+inline void set_default(const std::shared_ptr<details::logger> &logger) {
   registry::instance().set_default_logger(logger);
 }
 
-void set_formatter(std::unique_ptr<details::formatter> &&formatter) {
+inline void set_formatter(std::unique_ptr<details::formatter> &&formatter) {
   registry::instance().set_formatter(std::move(formatter));
 }
 
-void set_pattern(const std::string &pattern) {
+inline void set_pattern(const std::string &pattern) {
   registry::instance().set_pattern(pattern);
 }
 
-void set_name(const std::string &name) {
+inline void set_name(const std::string &name) {
   registry::instance().set_name(name);
 }
 }; // namespace ezLogger
