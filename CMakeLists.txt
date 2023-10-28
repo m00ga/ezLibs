@@ -10,7 +10,7 @@ project(
 
 add_subdirectory(ezTest)
 add_subdirectory(ezLogger)
-add_subdirectory(ezNetwork)
+add_subdirectory(ezSocket)
 
 configure_file(${ROOT_PROJECT}Config.cmake
                "${CMAKE_BINARY_DIR}/${ROOT_PROJECT}Config.cmake" @ONLY)
